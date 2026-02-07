@@ -1,0 +1,222 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+
+:root{
+  --bg:#f7f7f7;
+  --surface:#ffffff;
+  --surface2:#f0f0f0;
+  --text:#0f0f10;
+  --muted:rgba(0,0,0,.7);
+  --border:rgba(0,0,0,.12);
+  --control:#ededed;
+  --controlHover:#e0e0e0;
+  --accent:#2196f3;
+}
+
+body.dark{
+  --bg:#121212;
+  --surface:#0f0f10;
+  --surface2:#1a1a1a;
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.75);
+  --border:rgba(255,255,255,.14);
+  --control:#2a2a2a;
+  --controlHover:#222;
+  --accent:#2196f3;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:var(--bg);
+  color:var(--text);
+  transition:background-color .25s ease,color .25s ease;
+}
+
+img{max-width:100%;height:auto;display:block}
+
+.container{
+  width:100%;
+  min-height:100vh;
+  background:transparent;
+  color:inherit;
+}
+
+.status{
+  padding:24px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.status.error{color:#ff6b6b}
+
+.header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:16px 12px;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  flex:0 0 auto;
+}
+
+.all{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:12px;
+  align-items:start;
+  padding:0 12px 12px;
+}
+
+.games-genre{
+  background:linear-gradient(45deg,var(--surface),var(--surface2));
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+}
+
+.main{
+  display:grid;
+  gap:12px;
+}
+
+.games{
+  font-size:clamp(24px,4vw,44px);
+  padding:6px 4px 0;
+}
+
+.filter{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  padding:12px;
+  border-radius:14px;
+  background:linear-gradient(45deg,var(--surface),var(--surface2));
+  border:1px solid var(--border);
+}
+
+.form-control{
+  width:100%;
+  max-width:520px;
+  height:44px;
+  padding:0 14px;
+  font-size:15px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--control);
+  color:var(--text);
+  outline:none;
+  transition:background-color .2s ease,border-color .2s ease;
+}
+
+.form-control::placeholder{color:var(--muted)}
+.form-control:hover{background:var(--controlHover)}
+.form-control:focus{border-color:rgba(33,150,243,.75)}
+
+select.form-control{
+  max-width:260px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+  padding:0 12px 12px;
+}
+
+.image{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.image:hover{
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.switch{
+  position:relative;
+  display:inline-block;
+  width:56px;
+  height:32px;
+  margin-left:auto;
+}
+
+.switch input{opacity:0;width:0;height:0}
+
+.slider{
+  position:absolute;
+  inset:0;
+  cursor:pointer;
+  background:#4a4a4a;
+  transition:.25s;
+  border-radius:999px;
+}
+
+.slider:before{
+  position:absolute;
+  content:"";
+  height:24px;
+  width:24px;
+  left:4px;
+  top:4px;
+  background:#fff;
+  transition:.25s;
+  border-radius:50%;
+}
+
+input:checked + .slider{background:var(--accent)}
+input:checked + .slider:before{transform:translateX(24px)}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+
+.modal-content{
+  background:var(--surface);
+  color:var(--text);
+  width:min(560px,100%);
+  border-radius:14px;
+  padding:16px;
+  border:1px solid var(--border);
+}
+
+@media (max-width:1024px){
+  .all{grid-template-columns:240px 1fr}
+  .switch{margin-left:0}
+}
+
+@media (max-width:768px){
+  .all{grid-template-columns:1fr;padding:0 10px 10px}
+  .games-genre{order:2}
+  .main{order:1}
+  .header{padding:12px 10px}
+  .switch{margin-left:0}
+  .menu{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;padding:0 10px 12px}
+  select.form-control{max-width:100%}
+}
+
+@media (max-width:420px){
+  .logo{width:40px;height:40px}
+  .form-control{height:42px;font-size:14px}
+  .menu{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
